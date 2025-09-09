@@ -10,20 +10,22 @@
 </head>
 <body class="bg-gray-100 font-['helvetica_now_display']">
 
+  <!-- Navbar -->
   <nav class="w-full fixed top-0 left-0 px-5 py-3 bg-white shadow">
-    <h3 class="text-xl font-semibold">PackTrail</h3>
+    <h3 class="text-lg sm:text-xl font-semibold">PackTrail</h3>
   </nav>
 
-  <div class="w-full h-screen flex items-center justify-center">
-    <div class="w-[400px] bg-white p-8 rounded-lg shadow-md">
+  <!-- Main Container -->
+  <div class="w-full min-h-screen flex items-center justify-center px-4 pt-20">
+    <div class="w-full max-w-[400px] bg-white p-6 sm:p-8 rounded-lg shadow-md">
 
       <% if (typeof messages !== 'undefined' && messages.Error) { %>
-        <div class="bg-red-500 text-white px-4 py-2 rounded mb-4">
+        <div class="bg-red-500 text-white px-4 py-2 rounded mb-4 text-sm sm:text-base">
           <%= messages.Error %>
         </div>
       <% } %>
 
-      <h3 class="text-2xl mb-5 font-semibold text-center">Create Owner</h3>
+      <h3 class="text-xl sm:text-2xl mb-5 font-semibold text-center">Create Owner</h3>
 
       <form action="/owner/create" method="POST" autocomplete="off">
         <input

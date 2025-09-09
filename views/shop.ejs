@@ -1,53 +1,67 @@
 <%- include('./partials/header') %>
-    <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
+
+<% if(success.length>0){ %>
+  <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+    <span class="inline-block mt-1 mb-1 text-white">
+      <%= success %>
+    </span>
+  </div>
+<% } %>
+
+<div class="w-full min-h-screen flex flex-col md:flex-row items-start px-4 sm:px-8 md:px-20 py-10 md:py-20 gap-10">
+  
+  <!-- Products -->
+  <div class="md:w-[75%] w-full flex flex-col gap-5 order-1 md:order-2 pt-10 sm:pt-12 md:pt-0">
+    <div class="flex flex-wrap gap-5">
+      <% products.forEach((product) => { %>
+        <div class="w-[47%] sm:w-60 flex-shrink-0">
+          <div class="w-full h-40 sm:h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+            <img class="w-4/6 sm:w-5/6 h-4/6 sm:h-5/6 object-contain" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+          </div>
+          <div class="flex justify-between items-center px-3 sm:px-4 py-3 sm:py-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
+            <div>
+              <h3 class="text-sm sm:text-base font-medium truncate"><%= product.name %></h3>
+              <h4 class="text-sm sm:text-base">₹ <%= product.price %></h4>
+            </div>
+            <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="/addtocart/<%= product._id %>">
+              <i class="ri-add-line"></i>
+            </a>
+          </div>
         </div>
-    <% } %>
-    <div class="w-full h-screen flex items-start px-20 py-20">
-        <div class="w-[25%] flex h-screen flex-col items-start">
-            <div class="flex items-center gap-2">
-                <h3>sort by</h3>
-                <form action="/shop">
-                    <select class="border-[1px] px-2 py-1" name="sortby" id="">
-                        <option value="popular">Popular</option>
-                        <option value="newest">Newest</option>
-                    </select>
-                </form>
-            </div>
-            <div class="flex flex-col mt-20">
-                <a class="block w-fit mb-2" href="">New Collection</a>
-                <a class="block w-fit mb-2" href="">All Products</a>
-                <a class="block w-fit mb-2" href="">Discounted Products</a>
-            </div>
-            <div class="mt-32">
-                <a class="block w-fit mb-2" href="">Filter by :</a>
-                <a class="block w-fit mb-2" href="">Availability</a>
-                <a class="block w-fit mb-2" href="">Discount</a>
-            </div>
-        </div>
-        <div class="w-[75%] flex flex-col gap-5 h-screen">
-            <div class="flex items-start gap-5 flex-wrap">
-                <%products.forEach((product)=>{%>
-                    <div class="w-60">
-                    <div class="w-full h-52 flex items-center justify-center bg-[<%=product.bgcolor%>]">
-                        <img class="w-5/6 h-5/6 object-contain" src="data:image/jpeg;base64,<%=product.image.toString('base64') %>" alt="">
-                    </div>
-                    <div class="flex justify-between bg-[<%=product.panelcolor%>] items-center px-4 py-4 text-[<%=product.textcolor%>]">
-                        <div>
-                            <h3>
-                                <%=product.name%>
-                            </h3>
-                            <h4>₹ <%=product.price%></h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="/addtocart/<%=product._id%>">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                    </div>
-                <%})%>
-            </div>
-        </div>
+      <% }) %>
     </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="md:w-[25%] w-full flex flex-col items-start pt-4 sm:pt-6 md:pt-0 order-2 md:order-1">
+    <!-- Sort -->
+    <div class="mb-8">
+      <h3 class="text-xs sm:text-sm font-semibold text-gray-600 uppercase mb-2">Sort By</h3>
+      <form action="/shop">
+        <select class="border px-2 py-1 rounded text-sm sm:text-base w-full md:w-auto" name="sortby">
+          <option value="popular">Popular</option>
+          <option value="newest">Newest</option>
+        </select>
+      </form>
+    </div>
+
+    <!-- Categories -->
+    <div class="mb-8">
+      <h3 class="text-xs sm:text-sm font-semibold text-gray-600 uppercase mb-2">Categories</h3>
+      <div class="flex flex-col space-y-2">
+        <a class="hover:text-blue-500 transition" href="">New Collection</a>
+        <a class="hover:text-blue-500 transition" href="">All Products</a>
+        <a class="hover:text-blue-500 transition" href="">Discounted Products</a>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div>
+      <h3 class="text-xs sm:text-sm font-semibold text-gray-600 uppercase mb-2">Filters</h3>
+      <div class="flex flex-col space-y-2">
+        <a class="hover:text-blue-500 transition" href="">Availability</a>
+        <a class="hover:text-blue-500 transition" href="">Discount</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PackTrail – Modern Bags & Handbags</title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="/images/packtail-fabicon.png" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PackTrail – Modern Bags & Handbags</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/packtail-fabicon.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-['helvetica_now_display']">
-    <nav class="w-full fixed top-0 flex justify-between py-5 px-7">
-        <h3 class="text-xl">PackTrail</h3>
-        <% var loggedIn = typeof loggedIn !== "undefined" ? loggedIn : true %>
-        <% var isOwner = typeof isOwner !== "undefined" ? isOwner : false%>
-        <%if(loggedIn){%>
-            <div class="flex gap-5">
-            <!-- <a href="">My Account</a> -->
-            <%if(isOwner){%>
-                <a href="/owner/product/form">Add New Products</a>
-                <a href="/owner/shop">Shop</a>
-                <a class="text-blue-500" href="/owner/products">Products</a>
-                <a class="text-red-600" href="/owner/logout">Logout</a>
-            <%}else{%>
-                <a href="/shop">Shop</a>
-                <a href="/cart">Cart</a>
-                <a class="text-red-600" href="/users/logout">Logout</a>
-            <%}%>
-            </div>
-        <%}%>
-    </nav>
+
+  <!-- Navbar -->
+  <nav class="w-full fixed top-0 left-0 bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <!-- Logo -->
+      <h3 class="text-xl font-semibold">PackTrail</h3>
+
+      <% var loggedIn = typeof loggedIn !== "undefined" ? loggedIn : true %>
+      <% var isOwner = typeof isOwner !== "undefined" ? isOwner : false %>
+
+      <!-- Desktop Menu -->
+      <% if (loggedIn) { %>
+        <div class="hidden md:flex gap-6 items-center text-sm font-medium">
+          <% if (isOwner) { %>
+            <a href="/owner/product/form" class="hover:text-blue-500">Add New Product</a>
+            <a href="/owner/shop" class="hover:text-blue-500">Shop</a>
+            <a href="/owner/products" class="text-blue-500">Products</a>
+            <a href="/owner/logout" class="text-red-600 hover:text-red-700">Logout</a>
+          <% } else { %>
+            <a href="/shop" class="hover:text-blue-500">Shop</a>
+            <a href="/cart" class="hover:text-blue-500">Cart</a>
+            <a href="/users/logout" class="text-red-600 hover:text-red-700">Logout</a>
+          <% } %>
+        </div>
+      <% } %>
+
+      <!-- Mobile Menu Button -->
+      <% if (loggedIn) { %>
+        <button id="menuBtn" class="md:hidden text-2xl">
+          <i class="ri-menu-line"></i>
+        </button>
+      <% } %>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <% if (loggedIn) { %>
+      <div id="mobileMenu" class="hidden md:hidden flex-col bg-white px-6 pb-4 space-y-3 text-sm font-medium shadow">
+        <% if (isOwner) { %>
+          <a href="/owner/product/form" class="block hover:text-blue-500">Add New Product</a>
+          <a href="/owner/shop" class="block hover:text-blue-500">Shop</a>
+          <a href="/owner/products" class="block text-blue-500">Products</a>
+          <a href="/owner/logout" class="block text-red-600 hover:text-red-700">Logout</a>
+        <% } else { %>
+          <a href="/shop" class="block hover:text-blue-500">Shop</a>
+          <a href="/cart" class="block hover:text-blue-500">Cart</a>
+          <a href="/users/logout" class="block text-red-600 hover:text-red-700">Logout</a>
+        <% } %>
+      </div>
+    <% } %>
+  </nav>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
+  </script>

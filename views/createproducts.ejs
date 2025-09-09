@@ -1,54 +1,60 @@
 <%- include('./partials/header') %>
 
-    <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
-        </div>
-    <% } %>
+<% if(success.length > 0) { %>
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 p-3 rounded-md bg-blue-500">
+        <span class="inline-block mt-1 mb-1 text-white">
+            <%= success %>
+        </span>
+    </div>
+<% } %>
 
-            <div class="min-h-screen flex flex-col">
-                <div class="container px-10 py-20 flex flex-grow">
-                    <div class="w-[25%] flex h-screen flex-col items-start">
-                        <div class="flex flex-col">
-                            <a class="block w-fit mb-2" href="">All Products</a>
-                            <a class="block w-fit mb-2" href="">Create new product</a>
-                        </div>
-                    </div>
-                    <main class="w-3/4 bg-white p-8 shadow ml-4">
-                        <h2 class="text-xl font-bold mb-4">Create New Product</h2>
-                        <form autocomplete="off" action="/owner/products/create" method="post" enctype="multipart/form-data">
-                            <div class="mb-6">
-                                <h3 class="text-lg font-semibold mb-2">Product Details</h3>
-                                <div class="mb-4">
-                                    <label class="block mb-2 font-medium">Product Image</label>
-                                    <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="name" type="text" placeholder="Product Name"
-                                        class="border p-2 rounded w-full">
-                                    <input name="price" type="text" placeholder="Product Price"
-                                        class="border p-2 rounded w-full">
-                                    <input name="discount" type="text" placeholder="Discount Percentage"
-                                        class="border p-2 rounded w-full">
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="bgcolor" type="text" placeholder="Background Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="panelcolor" type="text" placeholder="Panel Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="textcolor" type="text" placeholder="Text Color"
-                                        class="border p-2 rounded w-full">
-                                </div>
-                            </div>
-                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
-                                value="Create New Product">
-                        </form>
-                    </main>
-                </div>
+<div class="min-h-screen flex flex-col">
+    <div class="container px-5 sm:px-10 py-10 sm:py-20 flex flex-col md:flex-row flex-grow gap-6">
+        <!-- Sidebar -->
+        <div class="w-full md:w-[25%] flex flex-col items-start">
+            <div class="flex flex-col space-y-2">
+                <a class="block w-fit text-blue-600" href="/owner/products">All Products</a>
             </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="w-full md:w-3/4 bg-white p-6 sm:p-8 shadow md:ml-4 rounded-md">
+            <h2 class="text-lg sm:text-xl font-bold mb-4">Create New Product</h2>
+            <form autocomplete="off" action="/owner/products/create" method="post" enctype="multipart/form-data">
+                
+                <!-- Product Details -->
+                <div class="mb-6">
+                    <h3 class="text-base sm:text-lg font-semibold mb-2">Product Details</h3>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">Product Image</label>
+                        <input name="image" type="file" class="py-2 px-4 rounded border w-full sm:w-auto">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input name="name" type="text" placeholder="Product Name"
+                            class="border p-2 rounded w-full">
+                        <input name="price" type="text" placeholder="Product Price"
+                            class="border p-2 rounded w-full">
+                        <input name="discount" type="text" placeholder="Discount Percentage"
+                            class="border p-2 rounded w-full sm:col-span-2 md:col-span-1">
+                    </div>
+                </div>
+
+                <!-- Panel Details -->
+                <div>
+                    <h3 class="text-base sm:text-lg font-semibold mb-2">Panel Details</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input name="bgcolor" type="text" placeholder="Background Color"
+                            class="border p-2 rounded w-full">
+                        <input name="panelcolor" type="text" placeholder="Panel Color"
+                            class="border p-2 rounded w-full">
+                        <input name="textcolor" type="text" placeholder="Text Color"
+                            class="border p-2 rounded w-full sm:col-span-2 md:col-span-1">
+                    </div>
+                </div>
+
+                <input class="px-5 py-2 rounded mt-5 bg-blue-500 text-white w-full sm:w-auto" type="submit"
+                    value="Create New Product">
+            </form>
+        </main>
+    </div>
+</div>
