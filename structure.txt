@@ -1,0 +1,21 @@
+userModel
+fullname: String,
+email: String,
+password: String,
+cart:[],
+order:[],
+
+ProductModel
+image:Buffer,
+name:String,
+price:Number,
+discount:Number,
+bgcolor:String,
+panelcolor:String,
+textcolor:String
+
+OwnerModel
+fullname: String,
+email: String,
+password: String,
+products:[]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PackTrail – Modern Bags & Handbags</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/packtail-fabicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-['helvetica_now_display']">
+    <nav class="w-full fixed top-0 flex justify-between py-5 px-7">
+        <h3 class="text-xl">PackTrail</h3>
+        <% var loggedIn = typeof loggedIn !== "undefined" ? loggedIn : true %>
+        <% var isOwner = typeof isOwner !== "undefined" ? isOwner : false%>
+        <%if(loggedIn){%>
+            <div class="flex gap-5">
+            <!-- <a href="">My Account</a> -->
+            <%if(isOwner){%>
+                <a href="/owner/product/form">Add New Products</a>
+                <a href="/owner/shop">Shop</a>
+                <a class="text-blue-500" href="/owner/products">Products</a>
+                <a class="text-red-600" href="/owner/logout">Logout</a>
+            <%}else{%>
+                <a href="/shop">Shop</a>
+                <a href="/cart">Cart</a>
+                <a class="text-red-600" href="/users/logout">Logout</a>
+            <%}%>
+            </div>
+        <%}%>
+    </nav>

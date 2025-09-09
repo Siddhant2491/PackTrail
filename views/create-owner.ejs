@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Owner</title>
+  <link rel="shortcut icon" href="/images/packtail-fabicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-['helvetica_now_display']">
+
+  <nav class="w-full fixed top-0 left-0 px-5 py-3 bg-white shadow">
+    <h3 class="text-xl font-semibold">PackTrail</h3>
+  </nav>
+
+  <div class="w-full h-screen flex items-center justify-center">
+    <div class="w-[400px] bg-white p-8 rounded-lg shadow-md">
+
+      <% if (typeof messages !== 'undefined' && messages.Error) { %>
+        <div class="bg-red-500 text-white px-4 py-2 rounded mb-4">
+          <%= messages.Error %>
+        </div>
+      <% } %>
+
+      <h3 class="text-2xl mb-5 font-semibold text-center">Create Owner</h3>
+
+      <form action="/owner/create" method="POST" autocomplete="off">
+        <input
+          class="bg-gray-100 block w-full px-3 py-2 border rounded-md mb-3"
+          type="text"
+          placeholder="Full Name"
+          name="fullname"
+          required
+        />
+
+        <input
+          class="bg-gray-100 block w-full px-3 py-2 border rounded-md mb-3"
+          type="email"
+          placeholder="Email"
+          name="email"
+          required
+        />
+
+        <input
+          class="bg-gray-100 block w-full px-3 py-2 border rounded-md mb-3"
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+        >
+          Create Owner
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
