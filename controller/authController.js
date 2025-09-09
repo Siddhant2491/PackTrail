@@ -60,7 +60,7 @@ module.exports.createOwner = async (req, res) => {
     });
 
     let token = jwt.sign({ id: user._id, email: email }, process.env.JWT_SECRET);
-    res.cookie("token", token);
+    res.cookie("ownerToken", token);
     return res.redirect("/owner/shop");
 
   } catch (err) {
